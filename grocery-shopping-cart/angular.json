@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "grocery-shopping-cart"
+  "defaultProject": "grocery-shopping-cart",
+  "cli": {
+    "analytics": false
+  }
 }

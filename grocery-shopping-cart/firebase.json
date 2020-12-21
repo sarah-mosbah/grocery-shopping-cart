@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "public": "dist/grocery-shopping-cart",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

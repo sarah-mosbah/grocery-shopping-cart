@@ -14,6 +14,7 @@ export class AuthService {
   }
 
   GoogleAuth() {
+  
     return this.AuthLogin(new firebase.default.auth.GoogleAuthProvider());
   }  
  

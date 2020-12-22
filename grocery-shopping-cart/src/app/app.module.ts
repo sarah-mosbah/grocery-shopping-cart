@@ -52,12 +52,15 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
       {path:"shop-cart", component:ShoppingCartComponent},
 
       {path:"check-out", component:CheckOutComponent, canActivate:[AuthGuard]},
-      {path:"my-order", component:MyOrdersComponent, canActivate:[AuthGuard]},
+      {path:"myorder", component:MyOrdersComponent, canActivate:[AuthGuard]},
       {path:"order/success", component:OrderSuccessComponent, canActivate:[AuthGuard]},
   
 
       {path:"admin/products", component:AdminProductsComponent, canActivate:[AuthGuard]},
       {path:"admin/orders", component:AdminOrdersComponent, canActivate:[AuthGuard]},
+
+
+      {path:'**', component:HomeComponent}
 
     ]),
     NgbModule //for bootstrap

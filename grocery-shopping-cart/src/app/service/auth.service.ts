@@ -8,10 +8,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  user:Observable<firebase.default.User>;
-
+  user:Observable<firebase.default.User>
   constructor(private firebaseAuth: AngularFireAuth) {
-   this.user= firebaseAuth.authState;
+    this.user=  firebaseAuth.authState;
   }
 
   GoogleAuth() {
@@ -19,11 +18,16 @@ export class AuthService {
   }  
  
   AuthLogin(provider) {
-    return this.firebaseAuth.signInWithPopup(provider)
-    .then((result) => {
-        console.log('You have been successfully logged in!', result)
-    }).catch((error) => {
-        console.log(error)
-    })
+    return this.firebaseAuth.signInWithPopup(provider);
+  }
+
+
+  get currentUser(){
+    return this.user;    
+  }
+
+
+  AuthLogOut(){
+    this.firebaseAuth.signOut();
   }
 }

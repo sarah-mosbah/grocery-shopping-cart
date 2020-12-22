@@ -6,6 +6,7 @@ export const environment = {
     projectId: "grocery-shop-91848",
     storageBucket: "grocery-shop-91848.appspot.com",
     messagingSenderId: "854796670774",
+    // databaseURL: "https://grocery-shop-91848-default-rtdb.firebaseio.com",
     appId: "1:854796670774:web:9d751a894b922b0db00597",
     measurementId: "G-2M33XMLXJJ"
   }

@@ -9,6 +9,7 @@ export const environment = {
     authDomain: "grocery-shop-91848.firebaseapp.com",
     projectId: "grocery-shop-91848",
     storageBucket: "grocery-shop-91848.appspot.com",
+    // databaseURL: "https://grocery-shop-91848-default-rtdb.firebaseio.com",
     messagingSenderId: "854796670774",
     appId: "1:854796670774:web:9d751a894b922b0db00597",
     measurementId: "G-2M33XMLXJJ"

@@ -25,6 +25,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './service/auth.service';
 import {  AuthGuard } from './service/auth-guard.service';
 import { OrderSuccessComponent } from './order-success/order-success.component';
+import { UserService } from './service/user.service';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +39,7 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    OrderSuccessComponent
+    OrderSuccessComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,8 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
   ],
   providers: [
      AuthService,
-     AuthGuard
+     AuthGuard,
+     UserService
   ],
   bootstrap: [AppComponent]
 })

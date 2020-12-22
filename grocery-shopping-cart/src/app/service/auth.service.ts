@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
+import { UserService } from './user.service';
 
 
 @Injectable({
@@ -10,7 +11,10 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   user:Observable<firebase.default.User>
-  constructor(private firebaseAuth: AngularFireAuth, private route:ActivatedRoute, private router:Router) {
+  constructor(private firebaseAuth: AngularFireAuth,
+     private route:ActivatedRoute, 
+     private router:Router,
+     private userSer: UserService) {
     this.user=  firebaseAuth.authState;
   }
 
@@ -21,9 +25,12 @@ export class AuthService {
  
   AuthLogin(provider) {
     let returnUrl=this.route.snapshot.queryParamMap.get('returnUrl');
-    return this.firebaseAuth.signInWithPopup(provider).then(()=>{
+    return this.firebaseAuth.signInWithPopup(provider).then((u)=>{
+        this.userSer.save(u.user);
         returnUrl ? this.router.navigateByUrl(returnUrl) :  this.router.navigateByUrl('/');
-    });
+    }).catch(err=>{
+      console.log(err);
+    } );
   }
 
 

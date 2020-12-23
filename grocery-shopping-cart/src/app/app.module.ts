@@ -29,6 +29,9 @@ import { UserService } from './service/user.service';
 import { AdminGuardService } from './service/admin-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { CategoryService } from './service/category.service';
+import { FormsModule, NgForm } from '@angular/forms';
+import { ProductService } from './service/product.service';
+import { NotNegativeValidator } from './common/not-negative.validators';
 
 
 @NgModule({
@@ -44,6 +47,7 @@ import { CategoryService } from './service/category.service';
     AdminOrdersComponent,
     OrderSuccessComponent,
     ProductFormComponent,
+    NotNegativeValidator
   ],
   imports: [
     BrowserModule,
@@ -51,6 +55,7 @@ import { CategoryService } from './service/category.service';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    FormsModule,
     RouterModule.forRoot([
       {path:"login", component:LoginComponent},
       {path:"", component:HomeComponent},
@@ -70,14 +75,16 @@ import { CategoryService } from './service/category.service';
       {path:'**', component:HomeComponent}
 
     ]),
-    NgbModule //for bootstrap
+    NgbModule, //for bootstrap
+  
   ],
   providers: [
      AuthService,
      AuthGuard,
      UserService,
      AdminGuardService,
-     CategoryService
+     CategoryService,
+     ProductService
   ],
   bootstrap: [AppComponent]
 })

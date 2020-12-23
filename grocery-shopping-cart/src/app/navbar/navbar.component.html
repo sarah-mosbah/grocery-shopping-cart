@@ -10,14 +10,16 @@
           <a class="nav-link" routerLink="/shop-cart">Shopping Cart</a>
         </li>
     
-          <li class="nav-item dropdown" *ngIf="authSer.currentUser|async as user; else annonymousUser" ngbDropdown >
+          <li class="nav-item dropdown" *ngIf="appUser$ as user; else annonymousUser" ngbDropdown >
             <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {{user.displayName}}
+              {{user.name}}
             </a>
             <div class="dropdown-menu" ngbDropdownMenu  aria-labelledby="navbarDropdown">
               <a class="dropdown-item" routerLink="/my-order" ngbDropdownItem>My Orders</a>
-              <a class="dropdown-item" routerLink="/admin/products" ngbDropdownItem>Manage Orders</a>
-              <a class="dropdown-item" routerLink="/admin/orders" ngbDropdownItem>Manage Products</a>
+              <ng-container *ngIf="user.isAdmin">
+              <a class="dropdown-item"  routerLink="/admin/orders"  ngbDropdownItem>Manage Orders</a>
+              <a class="dropdown-item" routerLink="/admin/products" ngbDropdownItem>Manage Products</a>
+            </ng-container>
               <a class="dropdown-item" ngbDropdownItem (click)="logOut()">Log Out</a>
             </div>
           </li>

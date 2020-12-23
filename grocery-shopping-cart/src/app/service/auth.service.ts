@@ -3,8 +3,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
+import { User } from '../models/user';
 import { UserService } from './user.service';
-
+import {switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -38,9 +39,14 @@ export class AuthService {
     return this.user;    
   }
 
+  get appUser$(): Observable<User>{
+    return  this.user.pipe(switchMap(e=> this.userSer.getUser(e?.uid).valueChanges()))
+  }
 
   AuthLogOut(){
     this.firebaseAuth.signOut();
     this.router.navigateByUrl('/login');
   }
+
+
 }

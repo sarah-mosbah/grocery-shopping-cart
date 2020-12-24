@@ -9,7 +9,6 @@ import {
 
 export function notNegative() : ValidatorFn{
     return (control: AbstractControl): { [key: string]: any } | null => {
-        console.log('hu')
       return  control.value <= 0 ? {notNegative: true} : null;
     } 
 }

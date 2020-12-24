@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/internal/operators/map';
+import { ProductService } from 'src/app/service/product.service';
 
 @Component({
   selector: 'app-admin-products',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminProductsComponent implements OnInit {
 
-  constructor() { }
+  prods$=[];
+
+
+  constructor(private productSer: ProductService) { }
 
   ngOnInit(): void {
+    this.productSer.getAll().stateChanges().subscribe(m=>{
+      this.prods$.push({
+        imageUrl: m.payload.val()["imageUrl"],
+        title: m.payload.val()["title"],
+        category: m.payload.val()["category"],
+        price: m.payload.val()["price"],
+        id:m.key
+      });
+    
+   });
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/internal/operators/map';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
 
@@ -11,9 +12,6 @@ import { ProductService } from 'src/app/service/product.service';
 export class ProductFormComponent {
 
   categories$;
-
-  
-
   constructor(
     private categSer:CategoryService, 
     private productSer: ProductService,
@@ -22,7 +20,7 @@ export class ProductFormComponent {
       this.categories$=list;
     });
   }
- 
+
   save(product){
     this.productSer.create(product);
     this.route.navigate(['/admin/products']);

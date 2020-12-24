@@ -3,18 +3,19 @@
         <form (ngSubmit)="save(f.value)" #f="ngForm">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input id="title" #t="ngModel" required ngModel name="title" type="text" class="form-control">
+                <input id="title" #t="ngModel" required [(ngModel)]="product.title" name="title" type="text" class="form-control">
             
                 <div class="alert alert-danger" *ngIf="t.touched && t.invalid">
                       Title is Required.
                 </div>
             </div>
+
             <div class="form-group">
             
                 <label for="price">Price</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                <input ngModel 
+                <input  [(ngModel)]="product.price" 
                  name="price" #p="ngModel" 
                  notNegative required 
                  id="price" 
@@ -33,7 +34,7 @@
             </div>
             <div class="form-group">
                 <label for="category">Category</label>
-                <select #c="ngModel" required ngModel name="category" id="category" class="form-control">
+                <select #c="ngModel" required  [(ngModel)]="product.category"  name="category" id="category" class="form-control">
                   <option value=""></option>
                   <option *ngFor="let c of categories$" [value]="c.name">{{c.name}}</option>
                 </select>
@@ -43,7 +44,8 @@
             </div>
             <div class="form-group">
                 <label for="imageUrl">ImageUrl</label>
-                <input ngModel 
+                <input 
+                [(ngModel)]="product.imageUrl" 
                 name="imageUrl" 
                 #iU="ngModel" 
                 required 
@@ -56,7 +58,12 @@
               </div>
             </div>
             
-            <input type="submit" value="Add Product" class="btn btn-secondary" [disabled]="f.invalid">
+            <input 
+                type="submit" 
+                value="Save" 
+                class="btn btn-secondary" 
+                [disabled]="f.invalid"
+            >
             
             </form>
     </div>
@@ -65,10 +72,10 @@
     <!----Rendring Product -->
     <div class="col-md-6">
         <div class="card" style="width: 18rem;">
-            <img [src]="iU.value" class="card-img-top">
+            <img [src]="product.imageUrl" class="card-img-top">
             <div class="card-body">
-                <h4 class="card-title">{{t.value}}</h4>
-                 <p class="card-text">{{p.value | currency:'USD':'symbol-narrow':'2.2-2'}}</p>
+                <h4 class="card-title">{{product.title}}</h4>
+                 <p class="card-text">{{product.price| currency:'USD':'symbol-narrow':'2.2-2'}}</p>
             </div>
           </div>
     </div>

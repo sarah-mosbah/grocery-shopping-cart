@@ -32,6 +32,7 @@ import { CategoryService } from './service/category.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ProductService } from './service/product.service';
 import { NotNegativeValidator } from './common/not-negative.validators';
+import { EditProductComponent } from './admin/edit-product/edit-product.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { NotNegativeValidator } from './common/not-negative.validators';
     AdminOrdersComponent,
     OrderSuccessComponent,
     ProductFormComponent,
-    NotNegativeValidator
+    NotNegativeValidator,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +71,7 @@ import { NotNegativeValidator } from './common/not-negative.validators';
 
       {path:"admin/products", component:AdminProductsComponent, canActivate:[AuthGuard, AdminGuardService]},
       {path:"admin/products/new", component:ProductFormComponent, canActivate:[AuthGuard, AdminGuardService]},
+      {path:"admin/products/:id", component:ProductFormComponent, canActivate:[AuthGuard, AdminGuardService]},
       {path:"admin/orders", component:AdminOrdersComponent, canActivate:[AuthGuard,AdminGuardService]},
 
 

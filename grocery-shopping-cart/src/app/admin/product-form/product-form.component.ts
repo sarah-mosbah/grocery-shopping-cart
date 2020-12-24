@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
 
@@ -11,9 +12,12 @@ export class ProductFormComponent {
 
   categories$;
 
-  urlPattern="(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})";
+  
 
-  constructor(private categSer:CategoryService, private productSer: ProductService) { 
+  constructor(
+    private categSer:CategoryService, 
+    private productSer: ProductService,
+    private route: Router) { 
      this.categSer.getCategories().valueChanges().subscribe((list)=>{
       this.categories$=list;
     });
@@ -21,6 +25,7 @@ export class ProductFormComponent {
  
   save(product){
     this.productSer.create(product);
+    this.route.navigate(['/admin/products']);
   }
 
 }

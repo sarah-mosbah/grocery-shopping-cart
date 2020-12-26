@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
+import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
@@ -7,12 +9,18 @@ import { ProductService } from 'src/app/service/product.service';
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.css']
 })
-export class AdminProductsComponent implements OnInit {
+export class AdminProductsComponent implements OnInit, OnDestroy {
 
-  prods$=[];
+  prods$: Product[];
+  subscribtion: Subscription;
+  filteredProducts: Product[];
 
 
-  constructor(private productSer: ProductService) { }
+  constructor(private productSer: ProductService) { 
+    this.subscribtion=new Subscription();
+    this.prods$=[];
+  }
+
 
   ngOnInit(): void {
     this.productSer.getAll().stateChanges().subscribe(m=>{
@@ -23,8 +31,17 @@ export class AdminProductsComponent implements OnInit {
         price: m.payload.val()["price"],
         id:m.key
       });
-    
+      this.filteredProducts=this.prods$;
    });
   }
 
+  filter(query: string){
+  this.filteredProducts=(query) ? 
+   this.prods$.filter(p=>(p["title"] as string).toLowerCase().includes(query.toLowerCase()))
+   : this.prods$;
+  }
+
+  ngOnDestroy(): void {
+    this.subscribtion.unsubscribe();
+  }
 }

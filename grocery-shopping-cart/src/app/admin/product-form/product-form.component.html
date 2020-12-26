@@ -64,8 +64,9 @@
                 class="btn btn-secondary" 
                 [disabled]="f.invalid"
             >
-            
-            </form>
+
+            <button type="button" (click)="delete()" class="btn btn-danger" *ngIf="product.id">Delete </button>
+        </form>
     </div>
 
 

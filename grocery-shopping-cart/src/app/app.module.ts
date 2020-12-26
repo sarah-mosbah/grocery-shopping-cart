@@ -32,7 +32,7 @@ import { CategoryService } from './service/category.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ProductService } from './service/product.service';
 import { NotNegativeValidator } from './common/not-negative.validators';
-import { EditProductComponent } from './admin/edit-product/edit-product.component';
+
 
 
 @NgModule({
@@ -48,8 +48,7 @@ import { EditProductComponent } from './admin/edit-product/edit-product.componen
     AdminOrdersComponent,
     OrderSuccessComponent,
     ProductFormComponent,
-    NotNegativeValidator,
-    EditProductComponent
+    NotNegativeValidator
   ],
   imports: [
     BrowserModule,

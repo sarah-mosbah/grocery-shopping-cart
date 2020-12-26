@@ -27,7 +27,7 @@ export class ProductFormComponent {
 
     this.id= this.actRoute.snapshot.paramMap.get('id');
 
-    if(this.id) this.productSer.getProduct(this.id).snapshotChanges().subscribe((p)=>{
+    if(this.id) this.productSer.getProduct(this.id).snapshotChanges().pipe(take(1)).subscribe((p)=>{
       this.product.id=p.key;
       this.product.price=p.payload.val()["price"]; 
       this.product.title=p.payload.val()["title"];
@@ -46,5 +46,10 @@ export class ProductFormComponent {
   }
 
 
+
+  delete(){
+    this.productSer.delete(this.id);
+    this.route.navigate(['/admin/products']);
+  }
 
 }

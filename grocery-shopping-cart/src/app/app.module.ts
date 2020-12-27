@@ -59,7 +59,7 @@ import { NotNegativeValidator } from './common/not-negative.validators';
     FormsModule,
     RouterModule.forRoot([
       {path:"login", component:LoginComponent},
-      {path:"", component:HomeComponent},
+      {path:"", component:ProductsComponent},
       {path:"products", component:ProductsComponent},
       {path:"shop-cart", component:ShoppingCartComponent},
 

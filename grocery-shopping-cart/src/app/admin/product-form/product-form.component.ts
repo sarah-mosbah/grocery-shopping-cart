@@ -21,7 +21,7 @@ export class ProductFormComponent {
     private route: Router, 
     private actRoute: ActivatedRoute) { 
 
-     this.categSer.getCategories().valueChanges().subscribe((list)=>{
+     this.categSer.getAll().valueChanges().subscribe((list)=>{
       this.categories$=list;
     });
 

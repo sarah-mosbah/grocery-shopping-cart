@@ -11,7 +11,7 @@ export class CategoryService {
   }
 
 
-  getCategories(): AngularFireList<object>{
+  getAll(): AngularFireList<object>{
     return this.db.list('/categories',(ref)=>{
       
       return ref.orderByChild('name');

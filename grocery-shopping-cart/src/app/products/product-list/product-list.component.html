@@ -1,0 +1,14 @@
+
+
+        <div class="card h-100">
+            <img [src]="product.imageUrl" class="card-img-top" [alt]="product.title">
+            <div class="card-body ">
+                <h4 class="card-title">{{product.title}}</h4>
+                <p class="card-text">{{product.price| currency:'USD':'symbol-narrow':'1.2-2'}}</p>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-primary btn-block">Add To Cart</a>
+            </div>
+          </div>
+    
+

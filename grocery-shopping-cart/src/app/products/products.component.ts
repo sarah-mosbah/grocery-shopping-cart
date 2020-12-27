@@ -17,7 +17,6 @@ export class ProductsComponent {
   filterdProducts:Product[]=[];
   catergory;
   constructor(private prodService: ProductService,
-              private categoryService:CategoryService,
               private route: ActivatedRoute
               ) {
     this.prodService.getAll().stateChanges().pipe(switchMap(m=>{
@@ -35,13 +34,6 @@ export class ProductsComponent {
     this.catergory=params.get('category');
     this.filterdProducts= this.catergory ? this.products
                                   .filter(a=>a.category===this.catergory) : this.products;
-   });
-
-   this.categoryService.getAll().stateChanges().subscribe((m)=>{
-    this.categories.push({
-      name: m.payload.val()["name"],
-      id:m.key
-    });
    });
   }
 

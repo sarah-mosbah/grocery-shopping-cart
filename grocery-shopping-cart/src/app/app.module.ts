@@ -32,6 +32,8 @@ import { CategoryService } from './service/category.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ProductService } from './service/product.service';
 import { NotNegativeValidator } from './common/not-negative.validators';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { ProductListComponent } from './products/product-list/product-list.component';
 
 
 
@@ -48,7 +50,9 @@ import { NotNegativeValidator } from './common/not-negative.validators';
     AdminOrdersComponent,
     OrderSuccessComponent,
     ProductFormComponent,
-    NotNegativeValidator
+    NotNegativeValidator,
+    ProductFilterComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,

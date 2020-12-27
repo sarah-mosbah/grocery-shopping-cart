@@ -34,6 +34,7 @@ import { ProductService } from './service/product.service';
 import { NotNegativeValidator } from './common/not-negative.validators';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
+import { ShoopingCartService } from './service/shooping-cart.service';
 
 
 
@@ -90,7 +91,8 @@ import { ProductListComponent } from './products/product-list/product-list.compo
      UserService,
      AdminGuardService,
      CategoryService,
-     ProductService
+     ProductService,
+     ShoopingCartService
   ],
   bootstrap: [AppComponent]
 })

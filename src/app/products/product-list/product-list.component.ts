@@ -15,8 +15,6 @@ export class ProductListComponent  {
 
 
   addToCart(product: Product){
-
-  let shoppingCart= this.cartService.getOrCreatCart();
-
+     this.cartService.addToCart(product);
   }
 }

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { take } from 'rxjs/operators';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -15,18 +17,34 @@ export class ShoopingCartService {
   }
 
 
- async getOrCreatCart(){
+ async getOrCreatCartId(){
     let cartId=localStorage.getItem('cartId');
+    
+    if (cartId) return cartId;
 
-    console.log(cartId);
-    if (!cartId){
-     cartId=await this.create().path.pieces_[1];
-     localStorage.setItem('cartId',cartId);
-     console.log("hello"+cartId);
-    }
+    cartId=await this.create().path.pieces_[1];
+    localStorage.setItem('cartId',cartId);
+    
     return this.getCart(cartId);
   }
- private getCart(cartId: string) {
+
+  private getCart(cartId: string) {
     return this.db.object(`/shopping-carts/${cartId}`);
+  }
+
+
+ async addToCart(product:Product){
+    let cart=await this.getOrCreatCartId();
+    let item$= this.db.object(`/shopping-carts/${cart}/items/${product.id}`);
+
+    item$.snapshotChanges().pipe(take(1)).subscribe((item)=>{
+      console.log(item);
+      if (item.key)  item$.update({quantity: item.payload.val()["quantity"]+1});
+
+      else  item$.set({
+        product: product,
+        quantity:1
+      });
+    })
   }
 }
